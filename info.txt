@@ -1,0 +1,35 @@
+1. Class teacher can only mark attendance for their own class.
+2. Add section-wise student grouping (like A, B, C inside each class).
+3. A student cannot have attendance marked more than once per day.
+4. Prevent attendance marking for holidays (store holidays in DB).
+5. Add subject-wise attendance (e.g., Science attendance vs Math).
+6. Create attendance trends per student (e.g., present % this month).
+7. Auto-mark students absent if not marked by 10 AM daily.
+8. Weekly report showing top 3 most present students in a class.
+9. Allow teacher to edit attendance within 24 hours only.
+10. Let admin generate CSV of all classes’ attendance by week.
+11. Group students by performance based on attendance %.
+13. Prevent duplicate student registration (by name + class).
+14. Notify if student is absent 3+ times in a week (in logs).
+15. Show list of students with above 70% attendance this month.
+
+
+
+
+Models se start kiya
+
+teacher model mai sbse pehle teacher ka name aana chaiye fir woh class ki teacher hai aur konse section ki teacher hai \
+uske baad woh konse subject ki teacher hai woh bhi aana chaiye konki humme subject wise attendance bhi chahiye 
+
+
+student model mai jyada kuch nhi chaiye student ki din mai sirf ek bar hi attendance honi chaiye yeh toh controller mai logic add krne ke liye add hoga
+basically models mai humme student ka name chaiye and class chaiye woh konse section mai hai woh chaiye 
+
+aur hume ek holiday ka bhi model chaiye because holiday ko count nhi krna humme so woh necessary hai
+
+attendance model bhi bna diya jisme student teacher status date wagera sab aayegi 
+
+db connection bhi ho gya
+
+
+controller 
