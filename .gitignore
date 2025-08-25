@@ -1,0 +1,5 @@
+.env
+node_modules/
+
+# VS Code settings
+.vscode/
