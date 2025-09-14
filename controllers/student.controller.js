@@ -1,42 +1,48 @@
-const student = require("../models/student.model.js")
+// CRUD operations or any operation or any logic we write here
+const Student = require("../models/Student");
 
-exports.Createstudent = async (req, res) => {
-    try {
-        const {name, class: className, section} = req.body
+// create student, get student
+//201 -- status code -- for success
+// 400 -- status code -- for error
 
-     if(!name||!className||!section){
-        return res
+// Create student with unique (name, class) and required class/section
+exports.createStudent = async (req, res) => {
+  try {
+    const { name, class: className, section } = req.body;
+    if (!name || !className || !section) {
+      return res
         .status(400)
-        .json({message: "Please fill all the fields."});
-
-      }
-      const exists = await student.findOne({className, section});
-      if (exists) {
-        return res
-        .status(400)
-        .json({error:"student with this name already exist in the class"})
-
-      }
-      const Student = new student({name, class: className, section});
-      await Student.save();
-      res
-      .status(201)
-      .json({message: "Student created successfully."});
-
-    } catch (error) {
-        res
-        .status(201)
-        .json({error:error.message});
-        
+        .json({ error: "Name, class, and section are required." });
     }
+    // Prevent duplicate registration (by name + class)
+    const exists = await Student.findOne({ name, class: className });
+    if (exists) {
+      return res
+        .status(400)
+        .json({
+          error: "Student with this name already exists in this class.",
+        });
+    }
+    const student = new Student({ name, class: className, section });
+    await student.save();
+    res.status(201).json(student);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
 };
 
-//get all the student,roup by performance, or above 70% attendance
-
-const attendance = require("../models/attendance.model.js");
-exports.Getstudent = async (req, res) => {
+// Get students, group by performance, or above 70% attendance
+const Attendance = require("../models/Attendance");
+exports.getStudents = async (req, res) => {
   try {
-    const{performance,above70,class:className,section,month,year} = req.query; 
+    const {
+      performance,
+      above70,
+      class: className,
+      section,
+      month,
+      year,
+    } = req.query;
     if ((performance || above70) && className && section && month && year) {
       // Calculate attendance % for each student in class/section/month
       const start = new Date(year, month - 1, 1);
@@ -74,16 +80,13 @@ exports.Getstudent = async (req, res) => {
         { $unwind: "$student" },
       ];
       if (above70) agg.push({ $match: { percent: { $gte: 70 } } });
-      const result = await attendance.aggregate(agg);
+      const result = await Attendance.aggregate(agg);
       return res.status(200).json(result);
     }
     // Default: get all students
-    const students = await student.find();
+    const students = await Student.find();
     res.status(200).json(students);
- 
+  } catch (err) {
+    res.status(400).json({ error: err.message });
   }
-    catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  }
-
+};
