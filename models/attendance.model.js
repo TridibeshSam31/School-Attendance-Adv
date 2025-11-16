@@ -3,11 +3,13 @@ const mongoose = require('mongoose');
 const attendanceSchema = new mongoose.Schema({
     student:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'student'
+        ref: 'student',
+        required: true
     },
     teacher:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'teacher'
+        ref: 'teacher',
+        required: true
     },
     class:{
         type:String,
@@ -17,6 +19,11 @@ const attendanceSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    subject:{
+        type: String,
+        required: true
+    },
+
     date:{
         type:Date,
         required:true
@@ -34,6 +41,6 @@ const attendanceSchema = new mongoose.Schema({
 
 
 },{timestamps:true});
-attendanceSchema.index({ student: 1, date: 1, subject: 1 }, { unique: true }); // Prevent duplicate attendance
+attendanceSchema.index({ student: 1, date: 1, subject: 1 }, { unique: true }); // Prevent duplicate attendance(indexing in db)
 
 module.exports = mongoose.model("attendance", attendanceSchema);

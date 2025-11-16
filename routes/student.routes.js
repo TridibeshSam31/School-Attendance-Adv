@@ -3,7 +3,7 @@ const router = express.Router();
 const {
   createStudent,
   getStudents,
-} = require("../controllers/studentController");
+} = require("../controllers/student.controller.js");
 
 
 console.log("Student routes loaded");

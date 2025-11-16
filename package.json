@@ -2,7 +2,7 @@
   "name": "schoolattendanceadv",
   "version": "1.0.0",
   "description": "An Abv version of the previous server",
-  "main": "server.js",
+  "main": "index.js",
   "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

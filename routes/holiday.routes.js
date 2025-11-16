@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const {
-  createHoliday,
-  getHolidays,
-} = require("../controllers/holidayController");
+  CreateHoliday,
+  GetHolidays,
+} = require("../controllers/holiday.controller.js");
 
 // POST /api/holidays - create a holiday
-router.post("/", createHoliday);
+router.post("/", CreateHoliday);
 
 // GET /api/holidays - list all holidays
-router.get("/", getHolidays);
+router.get("/", GetHolidays);
 
 module.exports = router;

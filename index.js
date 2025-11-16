@@ -24,15 +24,17 @@ app.use(
 
 // Test route - placing it before other middleware
 
-const studentRoutes = require("./routes/studentRoutes");
-const teacherRoutes = require("./routes/teacherRoutes");
-const attendanceRoutes = require("./routes/attendanceRoutes");
+const studentRoutes = require("./routes/student.routes.js");
+const teacherRoutes = require("./routes/teacher.routes.js");
+const attendanceRoutes = require("./routes/attendance.routes.js");
+const holidayRoutes = require("./routes/holiday.routes.js");
 
 
 // API Routes
 app.use("/api/students", studentRoutes);
 app.use("/api/teachers", teacherRoutes);
 app.use("/api/attendance", attendanceRoutes);
+app.use("/api/holidays", holidayRoutes);
 
 const PORT = process.env.PORT || 3000;
 

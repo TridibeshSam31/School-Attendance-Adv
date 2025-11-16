@@ -1,5 +1,6 @@
 // CRUD operations or any operation or any logic we write here
-const Student = require("../models/Student");
+const Student = require("../models/student.model.js");
+const Attendance = require("../models/attendance.model.js");
 
 // create student, get student
 //201 -- status code -- for success

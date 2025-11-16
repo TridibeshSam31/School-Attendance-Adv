@@ -1,3 +1,8 @@
+const Attendance = require("../models/attendance.model.js");
+const Student = require("../models/student.model.js");
+const Teacher = require("../models/teacher.model.js");
+const Holiday = require("../models/holiday.model.js");
+const mongoose = require("mongoose");
 const { Parser } = require("json2csv");
 
 // PATCH: Edit attendance within 24 hours only

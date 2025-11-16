@@ -1,4 +1,4 @@
-const Teacher = require("../models/Teacher");
+const Teacher = require("../models/teacher.model.js");
 
 exports.createTeacher = async (req, res) => {
   try {
